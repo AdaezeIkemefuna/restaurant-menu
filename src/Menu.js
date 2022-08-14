@@ -2,7 +2,6 @@ import React from "react";
 import Trash from './delete.png'
 
 const Menu = ({ items, setMenu }) => {
-
   return (
     <div className="section-center">
       {items.map((item) => {

@@ -1,17 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Menu from "./Menu";
 import Categories from "./Categories";
 import items from "./data";
 import logo from "./mealLogo.svg";
 import AddMenu from "./AddMenu";
 
-
-const allCategories = ["all", ...new Set(items.map((item) => item.category))];
-
 const App = () => {
+  const allCategories = ["all", ...new Set(items.map((item) => item.category))];
   const [menuItems, setMenuItems] = useState(items);
   const [activeCategory, setActiveCategory] = useState("");
   const [categories] = useState(allCategories);
+
+  useEffect(() => {
+    localStorage.setItem("menuItems", JSON.stringify(items))
+  }, [menuItems])
+
 
   // adding menu
   const [title, setTitle] = useState('')
@@ -19,8 +22,6 @@ const App = () => {
   const [priceOfMeal, setPrice] = useState('')
   const [cate, setCate] = useState('')
   const [url, setImage] = useState('')
-
-
 
   const addItems = () => {
     if (title) {
